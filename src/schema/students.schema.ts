@@ -4,10 +4,16 @@ import { Document } from 'mongoose';
 @Schema({ timestamps: true })
 export class Student extends Document {
   @Prop({ required: true })
-  name: string;
+  fname: string;
 
   @Prop({ required: true })
-  section: string;
+  lname: string;
+
+  @Prop({ required: true })
+  course: string;
+
+  @Prop({ required: true })
+  block: string;
 
   @Prop({ required: true })
   fingerPrint: string;
