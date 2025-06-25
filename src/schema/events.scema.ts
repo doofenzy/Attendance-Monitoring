@@ -16,4 +16,4 @@ export class Event extends Document {
   description: string;
 }
 
-export const EventsSchema = SchemaFactory.createForClass(Event);
+export const EventSchema = SchemaFactory.createForClass(Event);
