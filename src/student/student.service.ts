@@ -31,10 +31,7 @@ export class StudentService {
       });
       return student;
     } catch (error) {
-      throw new BadRequestException(
-        'Error checking fingerprint',
-        error.message,
-      );
+      throw new Error('Error checking fingerprint', error.message);
     }
   }
 
@@ -44,9 +41,14 @@ export class StudentService {
         throw new BadRequestException('ID is required');
       }
       const student = await this.studentModel.findById(id);
+
+      if (!student) {
+        throw new BadRequestException('Student not found');
+      }
+
       return student;
     } catch (error) {
-      throw new BadRequestException('Error fetching student', error.message);
+      throw new Error('Error fetching student', error.message);
     }
   }
 
@@ -59,10 +61,7 @@ export class StudentService {
 
       return students;
     } catch (error) {
-      throw new BadRequestException(
-        'Error fetching all students',
-        error.message,
-      );
+      throw new Error('Error fetching all students', error.message);
     }
   }
 
@@ -79,7 +78,7 @@ export class StudentService {
 
       return { message: 'Student deleted successfully', student };
     } catch (error) {
-      throw new BadRequestException('Error deleting student', error.message);
+      throw new Error('Error deleting student', error.message);
     }
   }
 
@@ -99,7 +98,7 @@ export class StudentService {
 
       return student;
     } catch (error) {
-      throw new BadRequestException('Error updating student', error.message);
+      throw new Error('Error updating student', error.message);
     }
   }
 }
